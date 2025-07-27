@@ -1,8 +1,9 @@
-const board = document.getElementById('board');
+// Note: use getElementsByClassName or better querySelector
+const board = document.querySelector('.container');
 
 for (let i = 0; i < 800; i++) {
   const box = document.createElement('div');
-  box.className = 'box';
+  box.className = 'square';
 
   box.addEventListener("mouseover", () => {
     box.style.backgroundColor = colorGenerator();
@@ -16,6 +17,13 @@ for (let i = 0; i < 800; i++) {
 }
 
 function colorGenerator() {
-  const colors = ["#e74c3c", "#8e44ad", "#3498db", "#1abc9c", "#f39c12", "#2ecc71"];
-return colors[Math.floor(Math.random()*colors.length)]
+  const colors = [
+    "#e74c3c",
+    "#8e44ad",
+    "#3498db",
+    "#1abc9c",
+    "#f39c12",
+    "#2ecc71"
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
 }
