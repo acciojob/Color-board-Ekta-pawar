@@ -1,29 +1,29 @@
-// Note: use getElementsByClassName or better querySelector
-const board = document.querySelector('.container');
+//your JS code here. If required.
+const container = document.getElementById('board');
+const COLORS = ['#FF595E', '#FFCA3A', '#8AC926', '#1982C4', '#6A4C93'];
+const SQUARES = 800;
 
-for (let i = 0; i < 800; i++) {
-  const box = document.createElement('div');
-  box.className = 'square';
+for (let i = 0; i < SQUARES; i++) {
+  const square = document.createElement('div');
+  square.classList.add('square');
 
-  box.addEventListener("mouseover", () => {
-    box.style.backgroundColor = colorGenerator();
-  });
+  square.addEventListener('mouseover', () => setColor(square));
+  square.addEventListener('mouseout', () => removeColor(square));
 
-  box.addEventListener("mouseout", () => {
-    box.style.backgroundColor = "#444"; // reset color
-  });
-
-  board.appendChild(box);
+  container.appendChild(square);
 }
 
-function colorGenerator() {
-  const colors = [
-    "#e74c3c",
-    "#8e44ad",
-    "#3498db",
-    "#1abc9c",
-    "#f39c12",
-    "#2ecc71"
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
+function setColor(element) {
+  const color = getRandomColor();
+  element.style.backgroundColor = color;
+}
+
+function removeColor(element) {
+  setTimeout(() => {
+    element.style.backgroundColor = '#1d1d1d';
+  }, 1000);
+}
+
+function getRandomColor() {
+  return COLORS[Math.floor(Math.random() * COLORS.length)];
 }
